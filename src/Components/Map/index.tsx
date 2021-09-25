@@ -1,11 +1,10 @@
 import { useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import ReactDOM from "react-dom";
-import "./Map.css";
 import Tooltip from "../Tooltip";
 
 mapboxgl.accessToken =
-  "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA";
+  "pk.eyJ1IjoiZWRkeXNpb3cwNTMwIiwiYSI6ImNrdHpqbDZpbzM4NzYycHBpdGRwZDVjYWYifQ.IqQ3tyCdyxNhhDyKsn4wKw";
 
 const Map = () => {
   const mapContainerRef = useRef(null);
@@ -56,7 +55,11 @@ const Map = () => {
 
   return (
     <div>
-      <div className="map-container" ref={mapContainerRef} />
+      <div
+        className="map-container"
+        ref={mapContainerRef}
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
+      />
     </div>
   );
 };

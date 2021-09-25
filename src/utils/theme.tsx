@@ -1,4 +1,4 @@
-import { createMuiTheme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import tinycolor from "tinycolor2";
 
 const primary = "#536DFE";
@@ -10,7 +10,7 @@ const info = "#9013FE";
 const lightenRate = 7.5;
 const darkenRate = 15;
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: primary,
