@@ -1,9 +1,9 @@
-import React from "react";
 import Box from "@mui/material/Box";
 
-import Map from "./Components/Map";
-import NavBar from "./Components/BaseLayout/NavBar";
-import Slider from "./Components/Slider";
+import Map from "./components/Map";
+import NavBar from "./components/BaseLayout/NavBar";
+import Slider from "./components/Slider";
+import Modal from "./features/Modal";
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
       <Box>
         <Slider />
         <Map />
+        <Modal />
       </Box>
     </div>
   );
