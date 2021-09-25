@@ -1,12 +1,18 @@
 import React from "react";
+import Box from "@mui/material/Box";
+
 import Map from "./Components/Map";
+import NavBar from "./Components/BaseLayout/NavigationBar";
+import Slider from "./Components/Slider";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <NavBar />
+      <Box>
+        <Slider />
         <Map />
-      </header>
+      </Box>
     </div>
   );
 }

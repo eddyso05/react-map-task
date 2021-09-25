@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import ReactDOM from "react-dom";
 import Tooltip from "../Tooltip";
@@ -7,16 +7,19 @@ mapboxgl.accessToken =
   "pk.eyJ1IjoiZWRkeXNpb3cwNTMwIiwiYSI6ImNrdHpqbDZpbzM4NzYycHBpdGRwZDVjYWYifQ.IqQ3tyCdyxNhhDyKsn4wKw";
 
 const Map = () => {
+  const [lng, setLng] = useState(103.8522982);
+  const [lat, setLat] = useState(1.285194);
+  const [zoom, setZoom] = useState(15);
   const mapContainerRef = useRef(null);
-  const tooltipRef = useRef(new mapboxgl.Popup({ offset: 15 }));
+  // const tooltipRef = useRef(new mapboxgl.Popup({ offset: 15 }));
 
   // Initialize map when component mounts
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current || "",
       style: "mapbox://styles/mapbox/streets-v11",
-      center: [-79.38, 43.65],
-      zoom: 12.5,
+      center: [lng, lat],
+      zoom: zoom,
     });
 
     // change cursor to pointer when user hovers over a clickable feature
@@ -42,10 +45,10 @@ const Map = () => {
         ReactDOM.render(<Tooltip feature={feature} />, tooltipNode);
 
         // Set tooltip on map
-        tooltipRef.current
-          .setLngLat(e.lngLat)
-          .setDOMContent(tooltipNode)
-          .addTo(map);
+        // tooltipRef.current
+        //   .setLngLat(e.lngLat)
+        //   .setDOMContent(tooltipNode)
+        //   .addTo(map);
       }
     });
 
@@ -54,7 +57,7 @@ const Map = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div>
+    <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
       <div
         className="map-container"
         ref={mapContainerRef}
