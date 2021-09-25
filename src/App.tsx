@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 
 import Map from "./Components/Map";
-import NavBar from "./Components/BaseLayout/NavigationBar";
+import NavBar from "./Components/BaseLayout/NavBar";
 import Slider from "./Components/Slider";
 
 function App() {

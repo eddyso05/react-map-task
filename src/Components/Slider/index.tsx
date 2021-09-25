@@ -1,6 +1,5 @@
 import Stack from "@mui/material/Stack";
 import Slider from "@mui/material/Slider";
-import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 
 function valuetext(value: number) {
   return `${value}°C`;
@@ -20,7 +19,13 @@ const marks = [
 export default function VerticalSlider() {
   return (
     <Stack
-      sx={{ height: "40%" }}
+      sx={{
+        height: "40%",
+        backgroundColor: "#fff",
+        padding: 2,
+        borderRadius: 25,
+        margin: 0,
+      }}
       spacing={1}
       direction="row"
       style={{ position: "absolute", right: 10, top: "25%", zIndex: 2 }}
@@ -31,14 +36,8 @@ export default function VerticalSlider() {
         getAriaValueText={valuetext}
         defaultValue={30}
         marks={marks}
+        style={{ margin: 0 }}
       />
-      {/* <Slider
-        getAriaLabel={() => "Temperature"}
-        orientation="vertical"
-        getAriaValueText={valuetext}
-        defaultValue={[20, 37]}
-        marks={marks}
-      /> */}
     </Stack>
   );
 }
