@@ -8,6 +8,7 @@ export interface MapState {
       zoom: number;
       modal: Boolean;
       loading: Boolean;
+      theme: string;
       data: {
         drivers: any;
         pickETA: number;

@@ -21,6 +21,7 @@ export const mapSlice = createSlice({
     zoom: 15,
     modal: false,
     loading: false,
+    theme: "streets-v11",
     data: {
       drivers: null,
       pickETA: null,
@@ -34,6 +35,9 @@ export const mapSlice = createSlice({
       state.location = action.payload[0];
       state.latitude = action.payload[1];
       state.longitude = action.payload[2];
+    },
+    setTheme: (state, action) => {
+      state.theme = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -52,6 +56,6 @@ export const mapSlice = createSlice({
   },
 });
 
-export const { toggleModal, setLocation } = mapSlice.actions;
+export const { toggleModal, setLocation, setTheme } = mapSlice.actions;
 
 export default mapSlice.reducer;

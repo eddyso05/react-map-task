@@ -7,6 +7,7 @@ import Fade from "@mui/material/Fade";
 import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
 
 import LocationButton from "./LocationButton";
+import ThemeButton from "./ThemeButton";
 import { fetchDrivers } from "../../features/drivers/services";
 import { toggleModal } from "../../features/drivers/slice";
 
@@ -15,7 +16,8 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  minWidth: 500,
+  maxWidth: 600,
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
@@ -27,7 +29,7 @@ export default function TransitionsModal() {
 
   useEffect(() => {
     dispatch(fetchDrivers(1));
-  }, []);
+  }, [dispatch]);
 
   const handleClose = () => {
     dispatch(toggleModal());
@@ -49,6 +51,9 @@ export default function TransitionsModal() {
         <Box sx={style}>
           <Box>
             <LocationButton />
+          </Box>
+          <Box style={{ marginTop: 20 }}>
+            <ThemeButton />
           </Box>
           <Button
             style={{ float: "right" }}

@@ -17,12 +17,13 @@ const Map = () => {
   const drivers = useSelector(
     (state: RootStateOrAny) => state.root.map.data.drivers
   );
+  const theme = useSelector((state: RootStateOrAny) => state.root.map.theme);
 
   // Initialize map when component mounts
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current || "",
-      style: "mapbox://styles/mapbox/streets-v11",
+      style: `mapbox://styles/mapbox/${theme}`,
       center: [long, lat],
       zoom: zoom,
       minZoom: 10,
@@ -55,7 +56,7 @@ const Map = () => {
       });
     }
     return () => map.remove();
-  }, [drivers]);
+  }, [drivers, theme]);
 
   return (
     <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
