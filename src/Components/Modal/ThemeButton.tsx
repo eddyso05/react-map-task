@@ -18,7 +18,7 @@ export default function ThemeButton() {
 
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">Theme</FormLabel>
+      <FormLabel component="legend">Map Theme</FormLabel>
       <RadioGroup
         row
         aria-label="location"
