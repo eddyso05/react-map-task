@@ -5,8 +5,13 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import SettingsIcon from "@mui/icons-material/Settings";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import { useDispatch } from "react-redux";
+
+import { toggleModal } from "../../../features/drivers/slice";
 
 export default function NavigationBar() {
+  const dispatch = useDispatch();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -17,7 +22,7 @@ export default function NavigationBar() {
           <Button color="inherit">
             <RefreshIcon />
           </Button>
-          <Button color="inherit">
+          <Button color="inherit" onClick={() => dispatch(toggleModal())}>
             <SettingsIcon />
           </Button>
         </Toolbar>

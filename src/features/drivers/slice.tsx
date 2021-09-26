@@ -31,7 +31,11 @@ export const mapSlice = createSlice({
       pickETA: null,
     },
   }),
-  reducers: {},
+  reducers: {
+    toggleModal: (state) => {
+      state.modal = !state.modal;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchDrivers.fulfilled, (state, action) => {
       driversAdapter.setAll(state, action.payload.drivers);
@@ -40,5 +44,7 @@ export const mapSlice = createSlice({
     });
   },
 });
+
+export const { toggleModal } = mapSlice.actions;
 
 export default mapSlice.reducer;

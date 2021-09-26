@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { Button } from "@mui/material";
 import Fade from "@mui/material/Fade";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { fetchDrivers } from "../../features/drivers/services";
-import { selectAllDrivers } from "../../features/drivers/slice";
+import { toggleModal } from "../../features/drivers/slice";
 
 const style = {
   position: "absolute" as "absolute",
@@ -23,18 +23,19 @@ const style = {
 };
 
 export default function TransitionsModal() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
+  const open = useSelector((state: any) => state.root.map.modal);
 
   useEffect(() => {
     dispatch(fetchDrivers());
   }, []);
 
+  const handleClose = () => {
+    dispatch(toggleModal());
+  };
+
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -54,6 +55,7 @@ export default function TransitionsModal() {
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </Typography>
+            <Button onClick={handleClose}>Close</Button>
           </Box>
         </Fade>
       </Modal>
