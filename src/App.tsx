@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Map from "./components/Map";
 import NavBar from "./components/BaseLayout/NavBar";
 import Slider from "./components/Slider";
-import Modal from "./features/Modal";
+import Modal from "./components/Modal";
 
 function App() {
   return (
