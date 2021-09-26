@@ -41,14 +41,15 @@ const Map = () => {
   );
   const lat = useSelector((state: RootStateOrAny) => state.root.map.latitude);
   const zoom = useSelector((state: RootStateOrAny) => state.root.map.zoom);
-  let map: any;
+
   // Initialize map when component mounts
   useEffect(() => {
-    map = new mapboxgl.Map({
+    const map = new mapboxgl.Map({
       container: mapContainerRef.current || "",
       style: "mapbox://styles/mapbox/streets-v11",
       center: [long, lat],
       zoom: zoom,
+      minZoom: 10,
     });
 
     for (const marker of geojson.features) {
@@ -62,17 +63,13 @@ const Map = () => {
         .setLngLat([marker.geometry.longtitude, marker.geometry.latitude])
         .addTo(map);
     }
-
+    // map.flyTo({
+    //   center: [long, lat],
+    //   essential: true,
+    // });
     // Clean up on unmount
     return () => map.remove();
-  }, []);
-
-  // useEffect(() => {
-  //   map.flyTo({
-  //     center: [long, lat],
-  //     essential: true,
-  //   });
-  // }, [long, lat, map]);
+  }, [, long, lat]);
 
   return (
     <div style={{ position: "relative", width: "100vw", height: "100vh" }}>

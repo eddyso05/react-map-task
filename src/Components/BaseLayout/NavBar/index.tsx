@@ -5,12 +5,20 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import SettingsIcon from "@mui/icons-material/Settings";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 
 import { toggleModal } from "../../../features/drivers/slice";
+import { fetchDrivers } from "../../../features/drivers/services";
 
 export default function NavigationBar() {
   const dispatch = useDispatch();
+  const longtitude = useSelector(
+    (state: RootStateOrAny) => state.root.map.longtitude
+  );
+  const latitude = useSelector(
+    (state: RootStateOrAny) => state.root.map.latitude
+  );
+  const count = useSelector((state: RootStateOrAny) => state.root.map.count);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -19,7 +27,12 @@ export default function NavigationBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             React Map Task
           </Typography>
-          <Button color="inherit">
+          <Button
+            color="inherit"
+            onClick={() =>
+              dispatch(fetchDrivers([latitude, longtitude, count]))
+            }
+          >
             <RefreshIcon />
           </Button>
           <Button color="inherit" onClick={() => dispatch(toggleModal())}>

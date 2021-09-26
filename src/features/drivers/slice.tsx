@@ -25,6 +25,7 @@ export const mapSlice = createSlice({
     location: "Singapore",
     longtitude: 103.8522982,
     latitude: 1.285194,
+    count: 15,
     zoom: 15,
     modal: false,
     loading: false,
@@ -38,12 +39,17 @@ export const mapSlice = createSlice({
       state.modal = !state.modal;
     },
     setLocation: (state, action) => {
-      state.longtitude = action.payload;
+      state.location = action.payload[0];
+      state.latitude = action.payload[1];
+      state.longtitude = action.payload[2];
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchDrivers.pending, (state) => {
       state.loading = true;
+    });
+    builder.addCase(fetchDrivers.rejected, (state) => {
+      state.loading = false;
     });
     builder.addCase(fetchDrivers.fulfilled, (state, action) => {
       driversAdapter.setAll(state, action.payload.drivers);

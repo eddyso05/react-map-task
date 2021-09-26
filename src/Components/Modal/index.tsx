@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { Button } from "@mui/material";
 import Fade from "@mui/material/Fade";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
 
 import LocationButton from "./LocationButton";
 import { fetchDrivers } from "../../features/drivers/services";
@@ -23,10 +23,17 @@ const style = {
 
 export default function TransitionsModal() {
   const dispatch = useDispatch();
-  const open = useSelector((state: any) => state.root.map.modal);
+  const open = useSelector((state: RootStateOrAny) => state.root.map.modal);
+  const longtitude = useSelector(
+    (state: RootStateOrAny) => state.root.map.longtitude
+  );
+  const latitude = useSelector(
+    (state: RootStateOrAny) => state.root.map.latitude
+  );
+  const count = useSelector((state: RootStateOrAny) => state.root.map.count);
 
   useEffect(() => {
-    dispatch(fetchDrivers());
+    dispatch(fetchDrivers([latitude, longtitude, count]));
   }, []);
 
   const handleClose = () => {
