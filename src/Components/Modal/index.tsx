@@ -34,34 +34,32 @@ export default function TransitionsModal() {
   };
 
   return (
-    <div>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <Box sx={style}>
-            <Box>
-              <LocationButton />
-            </Box>
-            <Button
-              style={{ float: "right" }}
-              variant="outlined"
-              color="primary"
-              onClick={handleClose}
-            >
-              Close
-            </Button>
+    <Modal
+      aria-labelledby="transition-modal-title"
+      aria-describedby="transition-modal-description"
+      open={open}
+      onClose={handleClose}
+      closeAfterTransition
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}
+    >
+      <Fade in={open}>
+        <Box sx={style}>
+          <Box>
+            <LocationButton />
           </Box>
-        </Fade>
-      </Modal>
-    </div>
+          <Button
+            style={{ float: "right" }}
+            variant="outlined"
+            color="primary"
+            onClick={handleClose}
+          >
+            Close
+          </Button>
+        </Box>
+      </Fade>
+    </Modal>
   );
 }
