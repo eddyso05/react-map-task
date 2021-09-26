@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import { useSelector, RootStateOrAny } from "react-redux";
 
@@ -11,6 +11,7 @@ mapboxgl.accessToken =
 
 const Map = () => {
   const mapContainerRef = useRef(null);
+  const [map, setMap] = useState<any>(null);
   const long = useSelector((state: RootStateOrAny) => state.root.map.longitude);
   const lat = useSelector((state: RootStateOrAny) => state.root.map.latitude);
   const zoom = useSelector((state: RootStateOrAny) => state.root.map.zoom);
@@ -19,7 +20,6 @@ const Map = () => {
   );
   const theme = useSelector((state: RootStateOrAny) => state.root.map.theme);
 
-  // Initialize map when component mounts
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current || "",
@@ -41,22 +41,42 @@ const Map = () => {
         .addTo(map);
     }
 
-    if (drivers) {
-      drivers.map((driver: Drivers) => {
-        const el = document.createElement("div");
-        el.className = "driver";
-        el.style.backgroundImage = `url(assets/car.png)`;
-        // Add markers to the map.
-        new mapboxgl.Marker(el, {
-          rotation: driver.location.bearing,
-        })
-          .setLngLat([driver.location.longitude, driver.location.latitude])
-          .addTo(map);
-        return true;
-      });
-    }
+    setMap(map);
+
     return () => map.remove();
-  }, [drivers, theme]);
+  }, []);
+
+  // Initialize map when component mounts
+  useEffect(() => {
+    if (!drivers) return;
+    const elements = document.getElementsByClassName("driver");
+    while (elements.length > 0) elements[0].remove();
+    drivers.map((driver: Drivers) => {
+      const el = document.createElement("div");
+      el.className = "driver";
+      el.style.backgroundImage = `url(assets/car.png)`;
+      // Add markers to the map.
+      new mapboxgl.Marker(el, {
+        rotation: driver.location.bearing,
+      })
+        .setLngLat([driver.location.longitude, driver.location.latitude])
+        .addTo(map);
+      return true;
+    });
+  }, [drivers, map]);
+
+  useEffect(() => {
+    if (!map) return;
+    map.flyTo({
+      center: [long, lat],
+      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+    });
+  }, [lat, long, map]);
+
+  useEffect(() => {
+    if (!map) return;
+    map.setStyle(`mapbox://styles/mapbox/${theme}`);
+  }, [theme]);
 
   return (
     <div style={{ position: "relative", width: "100vw", height: "100vh" }}>

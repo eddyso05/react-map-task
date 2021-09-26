@@ -10,6 +10,9 @@ import { fetchDrivers } from "../../features/drivers/services";
 export default function VerticalSlider() {
   const dispatch = useDispatch();
   const count = useSelector((state: RootStateOrAny) => state.root.map.count);
+  const pickETA = useSelector(
+    (state: RootStateOrAny) => state.root.map.data.pickETA
+  );
 
   const handleChange = (value: number) => {
     batch(() => {
@@ -42,6 +45,7 @@ export default function VerticalSlider() {
         }}
       >
         <Typography>Number of Drivers : {count}</Typography>
+        <Typography>Estimated time of arrival : {pickETA}</Typography>
         <Slider
           min={5}
           max={50}
