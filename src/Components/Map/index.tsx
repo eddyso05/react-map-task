@@ -1,60 +1,78 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
-import ReactDOM from "react-dom";
-import Tooltip from "../Tooltip";
+import { useSelector, RootStateOrAny } from "react-redux";
+import "./Map.css";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZWRkeXNpb3cwNTMwIiwiYSI6ImNrdHpqbDZpbzM4NzYycHBpdGRwZDVjYWYifQ.IqQ3tyCdyxNhhDyKsn4wKw";
 
-const Map = () => {
-  const [lng, setLng] = useState(103.8522982);
-  const [lat, setLat] = useState(1.285194);
-  const [zoom, setZoom] = useState(15);
-  const mapContainerRef = useRef(null);
-  // const tooltipRef = useRef(new mapboxgl.Popup({ offset: 15 }));
+const geojson = {
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      properties: {
+        iconSize: [60, 60],
+      },
+      geometry: {
+        type: "Point",
+        longtitude: 103.8522982,
+        latitude: 1.285194,
+      },
+    },
+    {
+      type: "Feature",
+      properties: {
+        iconSize: [60, 60],
+      },
+      geometry: {
+        type: "Point",
+        longtitude: -0.0964509,
+        latitude: 51.5049375,
+      },
+    },
+  ],
+};
 
+const Map = () => {
+  const mapContainerRef = useRef(null);
+  const long = useSelector(
+    (state: RootStateOrAny) => state.root.map.longtitude
+  );
+  const lat = useSelector((state: RootStateOrAny) => state.root.map.latitude);
+  const zoom = useSelector((state: RootStateOrAny) => state.root.map.zoom);
+  let map: any;
   // Initialize map when component mounts
   useEffect(() => {
-    const map = new mapboxgl.Map({
+    map = new mapboxgl.Map({
       container: mapContainerRef.current || "",
       style: "mapbox://styles/mapbox/streets-v11",
-      center: [lng, lat],
+      center: [long, lat],
       zoom: zoom,
     });
 
-    // change cursor to pointer when user hovers over a clickable feature
-    map.on("mouseenter", (e) => {
-      if (e.features.length) {
-        map.getCanvas().style.cursor = "pointer";
-      }
-    });
+    for (const marker of geojson.features) {
+      // Create a DOM element for each marker.
+      const el = document.createElement("div");
+      el.className = "logo-marker";
+      el.style.backgroundImage = `url(assets/logo-marker.png)`;
 
-    // reset cursor to default when user is no longer hovering over a clickable feature
-    map.on("mouseleave", () => {
-      map.getCanvas().style.cursor = "";
-    });
-
-    // add tooltip when users mouse move over a point
-    map.on("mousemove", (e: any) => {
-      const features = map.queryRenderedFeatures(e.point);
-      if (features.length) {
-        const feature = features[0];
-
-        // Create tooltip node
-        const tooltipNode = document.createElement("div");
-        ReactDOM.render(<Tooltip feature={feature} />, tooltipNode);
-
-        // Set tooltip on map
-        // tooltipRef.current
-        //   .setLngLat(e.lngLat)
-        //   .setDOMContent(tooltipNode)
-        //   .addTo(map);
-      }
-    });
+      // Add markers to the map.
+      new mapboxgl.Marker(el)
+        .setLngLat([marker.geometry.longtitude, marker.geometry.latitude])
+        .addTo(map);
+    }
 
     // Clean up on unmount
     return () => map.remove();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    map.flyTo({
+      center: [long, lat],
+      essential: true,
+    });
+  }, [long, lat, map]);
 
   return (
     <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
