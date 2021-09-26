@@ -14,13 +14,6 @@ export default function RowRadioButtonsGroup() {
   const location = useSelector(
     (state: RootStateOrAny) => state.root.map.location
   );
-  const longtitude = useSelector(
-    (state: RootStateOrAny) => state.root.map.longtitude
-  );
-  const latitude = useSelector(
-    (state: RootStateOrAny) => state.root.map.latitude
-  );
-  const count = useSelector((state: RootStateOrAny) => state.root.map.count);
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -30,7 +23,7 @@ export default function RowRadioButtonsGroup() {
           setLocation([
             event.target.value,
             locationSingapore.latitude,
-            locationSingapore.longtitude,
+            locationSingapore.longitude,
           ])
         );
       } else {
@@ -38,11 +31,11 @@ export default function RowRadioButtonsGroup() {
           setLocation([
             event.target.value,
             locationLondon.latitude,
-            locationLondon.longtitude,
+            locationLondon.longitude,
           ])
         );
       }
-      dispatch(fetchDrivers([latitude, longtitude, count]));
+      dispatch(fetchDrivers(1));
     });
   };
 

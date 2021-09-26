@@ -24,16 +24,9 @@ const style = {
 export default function TransitionsModal() {
   const dispatch = useDispatch();
   const open = useSelector((state: RootStateOrAny) => state.root.map.modal);
-  const longtitude = useSelector(
-    (state: RootStateOrAny) => state.root.map.longtitude
-  );
-  const latitude = useSelector(
-    (state: RootStateOrAny) => state.root.map.latitude
-  );
-  const count = useSelector((state: RootStateOrAny) => state.root.map.count);
 
   useEffect(() => {
-    dispatch(fetchDrivers([latitude, longtitude, count]));
+    dispatch(fetchDrivers(1));
   }, []);
 
   const handleClose = () => {

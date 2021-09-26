@@ -1,29 +1,21 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { RootStateOrAny } from "react-redux";
 import { fetchDrivers } from "./services";
-
-interface Drivers {
-  driver_id: string;
-  location: {
-    latitde: number;
-    longtitude: number;
-    bearing: number;
-  };
-}
+import { Drivers } from "../../interface";
 
 export const driversAdapter = createEntityAdapter<Drivers>({
   selectId: (driver: Drivers) => driver.driver_id,
 });
 
 export const { selectAll: selectAllDrivers } = driversAdapter.getSelectors(
-  (state: RootStateOrAny) => state.map
+  (state: RootStateOrAny) => state.root.map.data.drivers
 );
 
 export const mapSlice = createSlice({
   name: "map",
   initialState: driversAdapter.getInitialState({
     location: "Singapore",
-    longtitude: 103.8522982,
+    longitude: 103.8522982,
     latitude: 1.285194,
     count: 15,
     zoom: 15,
@@ -41,7 +33,7 @@ export const mapSlice = createSlice({
     setLocation: (state, action) => {
       state.location = action.payload[0];
       state.latitude = action.payload[1];
-      state.longtitude = action.payload[2];
+      state.longitude = action.payload[2];
     },
   },
   extraReducers: (builder) => {

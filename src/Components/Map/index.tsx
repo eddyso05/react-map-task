@@ -1,46 +1,22 @@
 import { useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import { useSelector, RootStateOrAny } from "react-redux";
+
+import { geojson } from "../../utils/location";
+import { Drivers } from "../../interface";
 import "./Map.css";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZWRkeXNpb3cwNTMwIiwiYSI6ImNrdHpqbDZpbzM4NzYycHBpdGRwZDVjYWYifQ.IqQ3tyCdyxNhhDyKsn4wKw";
 
-const geojson = {
-  type: "FeatureCollection",
-  features: [
-    {
-      type: "Feature",
-      properties: {
-        iconSize: [60, 60],
-      },
-      geometry: {
-        type: "Point",
-        longtitude: 103.8522982,
-        latitude: 1.285194,
-      },
-    },
-    {
-      type: "Feature",
-      properties: {
-        iconSize: [60, 60],
-      },
-      geometry: {
-        type: "Point",
-        longtitude: -0.0964509,
-        latitude: 51.5049375,
-      },
-    },
-  ],
-};
-
 const Map = () => {
   const mapContainerRef = useRef(null);
-  const long = useSelector(
-    (state: RootStateOrAny) => state.root.map.longtitude
-  );
+  const long = useSelector((state: RootStateOrAny) => state.root.map.longitude);
   const lat = useSelector((state: RootStateOrAny) => state.root.map.latitude);
   const zoom = useSelector((state: RootStateOrAny) => state.root.map.zoom);
+  const drivers = useSelector(
+    (state: RootStateOrAny) => state.root.map.data.drivers
+  );
 
   // Initialize map when component mounts
   useEffect(() => {
@@ -60,16 +36,24 @@ const Map = () => {
 
       // Add markers to the map.
       new mapboxgl.Marker(el)
-        .setLngLat([marker.geometry.longtitude, marker.geometry.latitude])
+        .setLngLat([marker.geometry.longitude, marker.geometry.latitude])
         .addTo(map);
     }
-    // map.flyTo({
-    //   center: [long, lat],
-    //   essential: true,
-    // });
-    // Clean up on unmount
+
+    if (drivers) {
+      drivers.map((driver: Drivers) => {
+        const el = document.createElement("div");
+        el.className = "driver";
+        el.style.backgroundImage = `url(assets/car.png)`;
+        el.style.transform = `rotateX("${driver.location.bearing} "deg)!important`;
+        // Add markers to the map.
+        new mapboxgl.Marker(el)
+          .setLngLat([driver.location.longitude, driver.location.latitude])
+          .addTo(map);
+      });
+    }
     return () => map.remove();
-  }, [, long, lat]);
+  }, [drivers]);
 
   return (
     <div style={{ position: "relative", width: "100vw", height: "100vh" }}>

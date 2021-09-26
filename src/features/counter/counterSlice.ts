@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppThunk } from "../../redux/store";
 import { fetchCount } from "./counterAPI";
 import { RootStateOrAny } from "react-redux";
+
 export interface CounterState {
   value: number;
   status: "idle" | "loading" | "failed";

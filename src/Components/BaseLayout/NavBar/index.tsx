@@ -12,13 +12,6 @@ import { fetchDrivers } from "../../../features/drivers/services";
 
 export default function NavigationBar() {
   const dispatch = useDispatch();
-  const longtitude = useSelector(
-    (state: RootStateOrAny) => state.root.map.longtitude
-  );
-  const latitude = useSelector(
-    (state: RootStateOrAny) => state.root.map.latitude
-  );
-  const count = useSelector((state: RootStateOrAny) => state.root.map.count);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -27,12 +20,7 @@ export default function NavigationBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             React Map Task
           </Typography>
-          <Button
-            color="inherit"
-            onClick={() =>
-              dispatch(fetchDrivers([latitude, longtitude, count]))
-            }
-          >
+          <Button color="inherit" onClick={() => dispatch(fetchDrivers(1))}>
             <RefreshIcon />
           </Button>
           <Button color="inherit" onClick={() => dispatch(toggleModal())}>
