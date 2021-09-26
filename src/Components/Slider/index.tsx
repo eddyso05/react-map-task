@@ -1,42 +1,52 @@
-import { Paper, Slider, Stack } from "@mui/material";
+import { Paper, Stack, Typography } from "@mui/material";
+import { useDispatch, useSelector, RootStateOrAny, batch } from "react-redux";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
-function valuetext(value: number) {
-  return `${value}°C`;
-}
-
-const marks = [
-  {
-    value: 0,
-    label: "0",
-  },
-  {
-    value: 100,
-    label: "100",
-  },
-];
+import "./slider.css";
+import { setCount } from "../../features/drivers/slice";
+import { fetchDrivers } from "../../features/drivers/services";
 
 export default function VerticalSlider() {
+  const dispatch = useDispatch();
+  const count = useSelector((state: RootStateOrAny) => state.root.map.count);
+
+  const handleChange = (value: number) => {
+    batch(() => {
+      dispatch(setCount(value));
+      dispatch(fetchDrivers(1));
+    });
+  };
+
   return (
     <Paper>
       <Stack
         sx={{
-          height: "40%",
+          width: "30%",
+          minWidth: 300,
           backgroundColor: "#fff",
           padding: 2,
-          borderRadius: 25,
+          borderRadius: 5,
           margin: 0,
         }}
         spacing={1}
         direction="row"
-        style={{ position: "absolute", right: 30, top: "25%", zIndex: 2 }}
+        style={{
+          position: "absolute",
+          right: "50%",
+          bottom: "15%",
+          transform: "translate(50%,0)",
+          zIndex: 2,
+          display: "block",
+          textAlign: "center",
+        }}
       >
+        <Typography>Number of Drivers : {count}</Typography>
         <Slider
-          aria-label="Drivers"
-          orientation="vertical"
-          getAriaValueText={valuetext}
-          defaultValue={30}
-          marks={marks}
-          style={{ margin: 0 }}
+          min={5}
+          max={50}
+          defaultValue={count}
+          onAfterChange={(value) => handleChange(value)}
         />
       </Stack>
     </Paper>

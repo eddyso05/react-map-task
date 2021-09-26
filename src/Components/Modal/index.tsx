@@ -16,7 +16,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  minWidth: 500,
+  minWidth: 300,
   maxWidth: 600,
   bgcolor: "background.paper",
   boxShadow: 24,
@@ -57,7 +57,7 @@ export default function TransitionsModal() {
             <ThemeButton />
           </Box>
           <Button
-            style={{ float: "right" }}
+            style={{ float: "right", marginTop: 20 }}
             variant="outlined"
             color="primary"
             onClick={handleClose}

@@ -39,6 +39,9 @@ export const mapSlice = createSlice({
     setTheme: (state, action) => {
       state.theme = action.payload;
     },
+    setCount: (state, action) => {
+      state.count = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchDrivers.pending, (state) => {
@@ -56,6 +59,7 @@ export const mapSlice = createSlice({
   },
 });
 
-export const { toggleModal, setLocation, setTheme } = mapSlice.actions;
+export const { toggleModal, setLocation, setTheme, setCount } =
+  mapSlice.actions;
 
 export default mapSlice.reducer;
