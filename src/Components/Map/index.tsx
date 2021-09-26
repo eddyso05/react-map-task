@@ -67,12 +67,12 @@ const Map = () => {
     return () => map.remove();
   }, []);
 
-  useEffect(() => {
-    map.flyTo({
-      center: [long, lat],
-      essential: true,
-    });
-  }, [long, lat, map]);
+  // useEffect(() => {
+  //   map.flyTo({
+  //     center: [long, lat],
+  //     essential: true,
+  //   });
+  // }, [long, lat, map]);
 
   return (
     <div style={{ position: "relative", width: "100vw", height: "100vh" }}>

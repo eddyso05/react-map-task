@@ -4,9 +4,9 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { Button } from "@mui/material";
 import Fade from "@mui/material/Fade";
-import Typography from "@mui/material/Typography";
 import { useSelector, useDispatch } from "react-redux";
 
+import LocationButton from "./LocationButton";
 import { fetchDrivers } from "../../features/drivers/services";
 import { toggleModal } from "../../features/drivers/slice";
 
@@ -17,7 +17,6 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -49,13 +48,17 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-            <Button onClick={handleClose}>Close</Button>
+            <Box>
+              <LocationButton />
+            </Box>
+            <Button
+              style={{ float: "right" }}
+              variant="outlined"
+              color="primary"
+              onClick={handleClose}
+            >
+              Close
+            </Button>
           </Box>
         </Fade>
       </Modal>

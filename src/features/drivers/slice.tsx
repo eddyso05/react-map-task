@@ -1,5 +1,5 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-
+import { RootStateOrAny } from "react-redux";
 import { fetchDrivers } from "./services";
 
 interface Drivers {
@@ -16,16 +16,18 @@ export const driversAdapter = createEntityAdapter<Drivers>({
 });
 
 export const { selectAll: selectAllDrivers } = driversAdapter.getSelectors(
-  (state: any) => state.map
+  (state: RootStateOrAny) => state.map
 );
 
 export const mapSlice = createSlice({
   name: "map",
   initialState: driversAdapter.getInitialState({
+    location: "Singapore",
     longtitude: 103.8522982,
     latitude: 1.285194,
     zoom: 15,
     modal: false,
+    loading: false,
     data: {
       drivers: null,
       pickETA: null,
@@ -35,16 +37,23 @@ export const mapSlice = createSlice({
     toggleModal: (state) => {
       state.modal = !state.modal;
     },
+    setLocation: (state, action) => {
+      state.longtitude = action.payload;
+    },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchDrivers.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(fetchDrivers.fulfilled, (state, action) => {
       driversAdapter.setAll(state, action.payload.drivers);
       state.data.drivers = action.payload.drivers;
       state.data.pickETA = action.payload.pickup_eta;
+      state.loading = false;
     });
   },
 });
 
-export const { toggleModal } = mapSlice.actions;
+export const { toggleModal, setLocation } = mapSlice.actions;
 
 export default mapSlice.reducer;
