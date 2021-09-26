@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       dispatch(fetchDrivers(1));
-    }, 60000);
+    }, 120000);
 
     return () => {
       clearInterval(interval);
