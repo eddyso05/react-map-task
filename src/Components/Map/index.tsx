@@ -45,11 +45,13 @@ const Map = () => {
         const el = document.createElement("div");
         el.className = "driver";
         el.style.backgroundImage = `url(assets/car.png)`;
-        el.style.transform = `rotateX("${driver.location.bearing} "deg)!important`;
         // Add markers to the map.
-        new mapboxgl.Marker(el)
+        new mapboxgl.Marker(el, {
+          rotation: driver.location.bearing,
+        })
           .setLngLat([driver.location.longitude, driver.location.latitude])
           .addTo(map);
+        return true;
       });
     }
     return () => map.remove();
