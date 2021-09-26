@@ -44,7 +44,7 @@ export default function VerticalSlider() {
           textAlign: "center",
         }}
       >
-        <Typography>Number of Drivers : {count}</Typography>
+        <Typography>Number of Taxis : {count}</Typography>
         <Typography>Estimated time of arrival : {pickETA}</Typography>
         <Slider
           min={5}
