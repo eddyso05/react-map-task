@@ -53,4 +53,4 @@ Apply MUI for speed up creating component as MUI provided nice components
 
 ## Validator - express-validator
 
-## Design Pattern - MVC
+Apply Express Validator for validation coming from front-end
