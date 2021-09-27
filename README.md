@@ -26,8 +26,8 @@ Clone the project to local machine <br />
 
 # Setup and run React project in local development
 
-1. Navigation to 'react' sub-directory
-   a. `cd ..` & `cd react`
+1. Open New Terminal & Navigation to that repository
+   a. `cd react`
 
 2. Install Project dependencies <br/>
    a. `yarn install`<br/>
