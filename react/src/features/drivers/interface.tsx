@@ -9,7 +9,6 @@ export interface MapState {
       modal: Boolean;
       loading: Boolean;
       theme: string;
-      stepperModal: Boolean;
       data: {
         drivers: any;
         pickETA: number;

@@ -7,7 +7,6 @@ import Map from "./components/Map";
 import NavBar from "./components/BaseLayout/NavBar";
 import Slider from "./components/Slider";
 import Modal from "./components/Modal";
-import Stepper from "./components/Stepper";
 import { fetchDrivers } from "./features/drivers/services";
 
 function App() {
@@ -34,7 +33,6 @@ function App() {
           <Slider />
           <Map />
           <Modal />
-          {/* <Stepper /> */}
         </Box>
       </LoadingOverlay>
     </div>
