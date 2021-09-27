@@ -10,14 +10,16 @@ export const fetchDrivers = createAsyncThunk<any, any, { state: MapState }>(
     const latitude = getState().root.map.latitude;
     const count = getState().root.map.count;
 
-    const ProxyURL: String = "https://cors-anywhere.herokuapp.com/";
-    const RequestURL: String = `https://qa-interview-test.splytech.dev/api/drivers?latitude=${latitude}&longitude=${longitude}&count=${count}`;
+    const BaseURL: String = `http://localhost:8080/api/v1/`;
 
-    const response = await axios.get(`${ProxyURL}${RequestURL}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await axios.get(
+      `${BaseURL}drivers?latitude=${latitude}&longitude=${longitude}&count=${count}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const { data } = response;
     return data;
   }
