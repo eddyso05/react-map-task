@@ -15,8 +15,8 @@ Clone the project to local machine <br />
    a. `cd server` <br/>
 
 5. Install Project dependencies <br/>
-   a. `yarn install`<br/>
-   b. if you are using npm , `npm install`<br/>
+   a. `yarn dev`<br/>
+   b. if you are using npm , `npm run dev`<br/>
 
 6. For development purpose, I have uploaded env file<br/>
 
