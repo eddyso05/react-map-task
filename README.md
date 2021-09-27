@@ -26,7 +26,7 @@ Clone the project to local machine <br />
 
 # Setup and run React project in local development
 
-1. Open New Terminal & Navigation to that repository
+1. Open New Terminal & Navigation to that repository<br/>
    a. `cd react`
 
 2. Install Project dependencies <br/>
