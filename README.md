@@ -18,15 +18,11 @@ Clone the project to local machine <br />
    a. `yarn install`<br/>
    b. if you are using npm , `npm install`<br/>
 
-3. Install Project dependencies <br/>
+3. For development purpose, I have uploaded env file<br/>
+
+4. Lastly, Run the server<br/>
    a. `yarn dev`<br/>
    b. if you are using npm , `npm run dev`<br/>
-
-4. For development purpose, I have uploaded env file<br/>
-
-5. Lastly, Run the server<br/>
-   a. `yarn start`<br/>
-   b. if you are using npm, `npm start`<br/>
 
 # Setup and run React project in local development
 
