@@ -8,10 +8,16 @@ const axios = require("axios");
 exports.getDrivers = asyncHandler(async (req, res, next) => {
   try {
     const { latitude, longitude, count } = req.query;
+    // validation
+    if (!latitude || !longitude || !count) {
+      return res.status(400).json({ message: "wrong parameter" });
+    }
+
     const response = await axios({
       url: `${process.env.SPLYTECH_API}drivers?latitude=${latitude}&longitude=${longitude}&count=${count}`,
       method: "get",
     });
+
     res.status(200).json(response.data);
   } catch (err) {
     res.status(500).json({ message: err });
