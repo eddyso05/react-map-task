@@ -4,7 +4,6 @@ const dotenv = require("dotenv");
 const errorHandler = require("./middleware/error");
 const morgan = require("morgan");
 const colors = require("colors");
-const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const rateLimit = require("express-rate-limit");
@@ -19,9 +18,6 @@ const app = express();
 
 //Body parser
 app.use(express.json());
-
-// cookie parser
-app.use(cookieParser());
 
 //Dev logging middleware
 if (process.env.NODE_ENV === "development") {

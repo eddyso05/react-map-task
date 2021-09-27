@@ -9,7 +9,7 @@ exports.getDrivers = asyncHandler(async (req, res, next) => {
   try {
     const { latitude, longitude, count } = req.query;
     const response = await axios({
-      url: `https://qa-interview-test.splytech.dev/api/drivers?latitude=${latitude}&longitude=${longitude}&count=${count}`,
+      url: `${process.env.SPLYTECH_API}drivers?latitude=${latitude}&longitude=${longitude}&count=${count}`,
       method: "get",
     });
     res.status(200).json(response.data);
