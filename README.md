@@ -24,7 +24,7 @@ Clone the project to local machine <br />
 
 4. The NodeJS should be successful running in Local Machine<br/>
 
-#### For development purpose, I have uploaded env file<br/>
+   #### For development purpose, I have uploaded env file<br/>
 
 # Setup and run React project in local development
 
@@ -41,7 +41,7 @@ Clone the project to local machine <br />
 
 4. The React should be successful running in Local Machine<br/>
 
-#### For development purpose, I didn't create env file<br/>
+   #### For development purpose, I didn't create env file<br/>
 
 # Information of Front-End
 
