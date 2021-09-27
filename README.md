@@ -43,7 +43,7 @@ Clone the project to local machine <br />
 
    #### For development purpose, I didn't create env file<br/>
 
-# Information of Front-End
+# Front-End Information
 
 ### State Management - Redux Toolkit
 
@@ -53,7 +53,7 @@ Apply redux-toolkit for redux thunk management for all state management
 
 Apply MUI for speed up creating component as MUI provided nice components
 
-# Back-End
+# Back-End Information
 
 ## Validator - express-validator
 
