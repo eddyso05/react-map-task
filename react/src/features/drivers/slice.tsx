@@ -2,6 +2,7 @@ import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { RootStateOrAny } from "react-redux";
 import { fetchDrivers } from "./services";
 import { Drivers } from "../../interface";
+import { stepperClasses } from "@mui/material";
 
 export const driversAdapter = createEntityAdapter<Drivers>({
   selectId: (driver: Drivers) => driver.driver_id,
@@ -21,6 +22,7 @@ export const mapSlice = createSlice({
     zoom: 15,
     modal: false,
     loading: false,
+    stepperModal: true,
     theme: "streets-v11",
     data: {
       drivers: null,
@@ -42,6 +44,9 @@ export const mapSlice = createSlice({
     setCount: (state, action) => {
       state.count = action.payload;
     },
+    toggleStepper: (state) => {
+      state.stepperModal = !state.stepperModal;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchDrivers.pending, (state) => {
@@ -59,7 +64,7 @@ export const mapSlice = createSlice({
   },
 });
 
-export const { toggleModal, setLocation, setTheme, setCount } =
+export const { toggleModal, setLocation, setTheme, setCount, toggleStepper } =
   mapSlice.actions;
 
 export default mapSlice.reducer;
