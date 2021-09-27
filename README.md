@@ -11,33 +11,37 @@ Clone the project to local machine <br />
 
 # Setup and run NodeJS project in local development
 
-4. For server side, we need to make nodeJS server run locally first<br/>
+1. For server side, we need to make nodeJS server run locally first<br/>
    a. `cd server` <br/>
 
-5. Install Project dependencies <br/>
+2. Install Project dependencies <br/>
+   a. `yarn install`<br/>
+   b. if you are using npm , `npm install`<br/>
+
+3. Install Project dependencies <br/>
    a. `yarn dev`<br/>
    b. if you are using npm , `npm run dev`<br/>
 
-6. For development purpose, I have uploaded env file<br/>
+4. For development purpose, I have uploaded env file<br/>
 
-7. Lastly, Run the server<br/>
+5. Lastly, Run the server<br/>
    a. `yarn start`<br/>
    b. if you are using npm, `npm start`<br/>
 
 # Setup and run React project in local development
 
-8. Navigation to 'react' sub-directory
+1. Navigation to 'react' sub-directory
    a. `cd ..` & `cd react`
 
-9. Install Project dependencies <br/>
+2. Install Project dependencies <br/>
    a. `yarn install`<br/>
    b. if you are using npm , `npm install`<br/>
 
-10. For development purpose, I didn't create env file<br/>
+3. For development purpose, I didn't create env file<br/>
 
-11. Lastly, Run the project<br/>
-    a. `yarn start`<br/>
-    b. if you are using npm, `npm start`<br/>
+4. Lastly, Run the project<br/>
+   a. `yarn start`<br/>
+   b. if you are using npm, `npm start`<br/>
 
 # Front-End
 
