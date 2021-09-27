@@ -18,11 +18,13 @@ Clone the project to local machine <br />
    a. `yarn install`<br/>
    b. if you are using npm , `npm install`<br/>
 
-3. For development purpose, I have uploaded env file<br/>
-
-4. Lastly, Run the server<br/>
+3. Lastly, Run the server<br/>
    a. `yarn dev`<br/>
    b. if you are using npm , `npm run dev`<br/>
+
+4. The NodeJS should be successful running in Local Machine<br/>
+
+#### For development purpose, I have uploaded env file<br/>
 
 # Setup and run React project in local development
 
@@ -33,19 +35,21 @@ Clone the project to local machine <br />
    a. `yarn install`<br/>
    b. if you are using npm , `npm install`<br/>
 
-3. For development purpose, I didn't create env file<br/>
-
-4. Lastly, Run the project<br/>
+3. Lastly, Run the project<br/>
    a. `yarn start`<br/>
    b. if you are using npm, `npm start`<br/>
 
-# Front-End
+4. The React should be successful running in Local Machine<br/>
 
-## State Management - Redux Toolkit
+#### For development purpose, I didn't create env file<br/>
+
+# Information of Front-End
+
+### State Management - Redux Toolkit
 
 Apply redux-toolkit for redux thunk management for all state management
 
-## CSS - Material UI
+### CSS - Material UI
 
 Apply MUI for speed up creating component as MUI provided nice components
 
