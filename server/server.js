@@ -4,7 +4,6 @@ const dotenv = require("dotenv");
 const errorHandler = require("./middleware/error");
 const morgan = require("morgan");
 const colors = require("colors");
-const fileupload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
 const xss = require("xss-clean");
@@ -15,7 +14,6 @@ const cors = require("cors");
 dotenv.config({ path: "./config/config.env" });
 
 //Route files
-const users = require("./routes/users");
 const drivers = require("./routes/drivers");
 const app = express();
 
@@ -29,9 +27,6 @@ app.use(cookieParser());
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
-
-// File uploading
-app.use(fileupload());
 
 // set security headers
 app.use(helmet());
@@ -57,7 +52,6 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Mount routers
-app.use("/api/v1/users", users);
 app.use("/api/v1/drivers", drivers);
 app.use(errorHandler);
 
