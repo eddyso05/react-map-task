@@ -7,12 +7,20 @@ const axios = require("axios");
 //@access Public
 exports.getDrivers = asyncHandler(async (req, res, next) => {
   try {
-    const { latitude, longitude, count } = req.query;
     // validation
+    req.check("latitude").isNumeric().notEmpty();
+    req.check("longitude").isNumeric();
+    req.check("count").isNumeric();
+
+    const error = req.validationErrors();
+    if (error) {
+      return res.status(400).json({ message: "Invalid Value" });
+    }
+
+    const { latitude, longitude, count } = req.query;
     if (!latitude || !longitude || !count) {
       return res.status(400).json({ message: "wrong parameter" });
     }
-
     const response = await axios({
       url: `${process.env.SPLYTECH_API}drivers?latitude=${latitude}&longitude=${longitude}&count=${count}`,
       method: "get",

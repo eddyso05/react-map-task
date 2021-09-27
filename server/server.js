@@ -9,6 +9,7 @@ const xss = require("xss-clean");
 const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
 const cors = require("cors");
+const expressValidator = require("express-validator");
 //Load env vars
 dotenv.config({ path: "./config/config.env" });
 
@@ -46,6 +47,9 @@ app.use(cors());
 
 // set static folder
 app.use(express.static(path.join(__dirname, "public")));
+
+// validators
+app.use(expressValidator());
 
 // Mount routers
 app.use("/api/v1/drivers", drivers);
