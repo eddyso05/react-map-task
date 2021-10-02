@@ -76,7 +76,7 @@ const Map = () => {
   useEffect(() => {
     if (!map) return;
     map.setStyle(`mapbox://styles/mapbox/${theme}`);
-  }, [theme]);
+  }, [theme, map]);
 
   return (
     <div style={{ position: "relative", width: "100vw", height: "100vh" }}>

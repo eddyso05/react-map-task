@@ -14,6 +14,9 @@ export default function RowRadioButtonsGroup() {
   const location = useSelector(
     (state: RootStateOrAny) => state.root.map.location
   );
+  const nearestOffice = useSelector(
+    (state: RootStateOrAny) => state.root.user.nearestOffice
+  );
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -26,7 +29,8 @@ export default function RowRadioButtonsGroup() {
             locationSingapore.longitude,
           ])
         );
-      } else {
+      }
+      if (event.target.value === "London") {
         dispatch(
           setLocation([
             event.target.value,
@@ -57,6 +61,11 @@ export default function RowRadioButtonsGroup() {
           label="Singapore"
         />
         <FormControlLabel value="London" control={<Radio />} label="London" />
+        <FormControlLabel
+          value={nearestOffice}
+          control={<Radio />}
+          label={`Nearest Office (${nearestOffice})`}
+        />
       </RadioGroup>
     </FormControl>
   );

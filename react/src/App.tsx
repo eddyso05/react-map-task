@@ -8,6 +8,7 @@ import NavBar from "./components/BaseLayout/NavBar";
 import Slider from "./components/Slider";
 import Modal from "./components/Modal";
 import { fetchDrivers } from "./features/drivers/services";
+import Geolocation from "./components/Geolocation";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
         <Box>
           <Slider />
           <Map />
+          <Geolocation />
           <Modal />
         </Box>
       </LoadingOverlay>
