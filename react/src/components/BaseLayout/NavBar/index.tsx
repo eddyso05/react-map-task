@@ -7,9 +7,11 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import { useDispatch } from "react-redux";
 import Tooltip from "@mui/material/Tooltip";
+import HelpIcon from "@mui/icons-material/Help";
 
 import { toggleModal } from "../../../features/drivers/slice";
 import { fetchDrivers } from "../../../features/drivers/services";
+import { toggleInfoModal } from "../../../features/user/slice";
 
 export default function NavigationBar() {
   const dispatch = useDispatch();
@@ -21,6 +23,11 @@ export default function NavigationBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             React Map Task
           </Typography>
+          <Tooltip title="Info">
+            <Button color="inherit" onClick={() => dispatch(toggleInfoModal())}>
+              <HelpIcon />
+            </Button>
+          </Tooltip>
           <Tooltip title="Refresh">
             <Button color="inherit" onClick={() => dispatch(fetchDrivers(1))}>
               <RefreshIcon />
