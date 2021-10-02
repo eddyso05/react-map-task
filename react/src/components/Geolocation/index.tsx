@@ -93,11 +93,21 @@ const Geolocation = () => {
     >
       <Fade in={open}>
         <Box sx={style}>
-          <Typography>User Location</Typography>
-          <Typography>Longitude : {longitude}</Typography>
-          <Typography>Latitude : {latitude}</Typography>
-          <Typography>Accuracy: {accuracy} meter in between</Typography>
-          <Typography>Nearest Office : {nearOffice} </Typography>
+          <Typography variant="h5" style={{ marginBottom: 10 }}>
+            User Location
+          </Typography>
+          <Typography variant="subtitle1">
+            Longitude : {longitude || "No Found"}
+          </Typography>
+          <Typography variant="subtitle1">
+            Latitude : {latitude || "No Found"}
+          </Typography>
+          <Typography variant="subtitle1">
+            Accuracy: {accuracy || 0} meter in between
+          </Typography>
+          <Typography variant="subtitle1">
+            Nearest Office : {nearOffice || "No Found"}
+          </Typography>
 
           <Button
             style={{ float: "right", marginTop: 20 }}
