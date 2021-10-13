@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { nearestOffice } from "../../components/Geolocation/calculation";
 
 export const userSlice = createSlice({
   name: "user",
